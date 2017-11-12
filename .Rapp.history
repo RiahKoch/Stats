@@ -1,0 +1,9 @@
+h <- 26
+if(h<=21){print("happy")}else{print("sad")}
+n = 6
+publications.vec  = rnorm(n,mean=15,sd=4)
+publications.vec
+publications = round(publications.vec,0)
+publications
+dt=data.frame(1:n,publications,rep(NA,times=n))
+dt
