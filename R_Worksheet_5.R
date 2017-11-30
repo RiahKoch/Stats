@@ -15,29 +15,31 @@
 #Construct a boxplot of the decrese in volume for each category of the lime sulphur
 ?OrchardSprays
 names(OrchardSprays)
-OrchardSprays
+head(OrchardSprays)
 #treatment=A:H
 attach(OrchardSprays)
 plot(treatment,decrease)
 
 #b
 #pick out the row indices of the data for which the treatment was A
-
 treatment
 unique(treatment)
 unique(treatment)[8]
 rowpos[which(treatment == unique(treatment)[8])]
-
+#or
+which(treatment=='A')
+OrchardSprays$rowpos[which(treatment=='A')]
 #c
 #Pick out the values of decrease for which the tretment was A.
 names(OrchardSprays)
 decrease[which(treatment == unique(treatment)[8])]
+#or
 Adecrease<-decrease[which(treatment == 'A')]
 
 #d
 #Find the mean and varience of these values
-a<-rowpos[which(treatment == unique(treatment)[8])]
-b<-decrease[which(treatment == unique(treatment)[8])]
+a<-rowpos[which(treatment == 'A')]
+b<-decrease[which(treatment == 'A')]
 mean(a)
 var(a)
 mean(b)
@@ -68,9 +70,8 @@ var(rowpos[which(treatment =="B")])
 ?t.test
 t.test(Bdecrease,Adecrease)
 
-
 #2
-#Loan the R dataset airquality
+#Load the R dataset airquality
 airquality
 names(airquality)
 ?airquality
@@ -78,29 +79,26 @@ attach(airquality)
 #a
 #Are any Ozone values NA?
 is.na(Ozone)
-any(Ozone=="NA")
-
+any(is.na(Ozone))
 #Yes
 
 #b
 #Which cases are these?
+#there's a bunch of guess and check, see if you guess the right one
 Ozone[Ozone=='NA']
 Ozone[Ozone==""]
-airquality
 unique(Ozone)
 which(Ozone == unique(treatment)["NA"]) #integer(0)
 Ozone == unique(Ozone)['NA'] #batman
 Ozone == unique(Ozone)[5] #pulls out all the NAs
 Ozone =='NA'
-#Kinda works?
-which(Ozone=="NA") #also gives integer(0)
+airquality[airquality$Ozone =="NA",]
 
-Ozone =="NA"
-#best I could work out
+airquality[is.na(Ozone),]
+#There we go
 
 #c
 #Generate a datafram with no NA values for Ozone
-
 clean<-na.omit(Ozone)
 
 #d
@@ -108,7 +106,7 @@ clean<-na.omit(Ozone)
 Wind[Wind >= 16]
 
 #e
-#List the value for which wihchare greater than or equal to 16 
+#List the value for which Wind is greater than or equal to 16 
 #and less than or equal to 4
 Wind[Wind >=16 & Wind <=4] 
 #none, obviously a number can't be both at the same time
@@ -116,17 +114,15 @@ Wind[Wind >=16 & Wind <=4]
 Wind[Wind >=16 | Wind <=4]
 
 #f
-#What were the corresponding values for Oaone on those occasions
+#What were the corresponding values for Ozone on those occasions
 #for which wind was at least 17 and no more than 3?
-
 Ozone[Wind>17&Ozone<3]
 #this gives them where wind was over 17 and ozone was less than 3, never
 Ozone[Wind>17|Wind<3]
-#I guess this is it
-airquality
+airquality[Wind>17|Wind<3,]
+
 #g
 #Are there any NA values in either the Ozone observations, 
 #or the Wind observations, for August?
-is.na(Ozone[Month==8]|Wind[Month==8])
+any(is.na(Ozone[Month==8]|Wind[Month==8]))
 #no
-

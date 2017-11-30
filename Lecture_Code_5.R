@@ -18,6 +18,7 @@ conc == unique(conc)[1]
 #or
 conc==0.02
 
+#that true false is cool but how can I just get which observations fit the bill?
 which(conc== unique(conc)[1])
 which(conc==0.02)
 
@@ -37,14 +38,13 @@ rate.006<-rate[id.006]
 mean(rate.002)
 mean(rate.006)
 
-#significantly different?
+#Are the means of those two groups significantly different?
 #check with a t-test
 t.test(rate.002,rate.006)
-#nul hypothesis is that the means are equal, remember?
+#nul hypothesis is that the means are equal
 #alt, the means =/=
-#reject the nul, low p value, 
-#and the confience interval does not include 0
-
+#reject the nul if there's a low p-value, 
+#and/or the confience interval does not include 0
 
 ####
 #other logical opeartors
@@ -54,20 +54,19 @@ x=1:10
 # not equal is "!="
 x[x>7]
 x[x<=4]
-x[x<3 | x>=9]
-
+x[x<4 | x>=7]
 
 #######
 #Interogation
 d<-6
-
 d<2
 d>2
-#do ask about equality ==
+#ask about equality ==
 d<-3
 d==3
 #you can use = instead of <- when assinging a thingy
 #it's considered "better coding" to use <-
+#as mathematicians will tell you, the assignment only goes one way
 d==6
 
 d!=6
@@ -87,7 +86,7 @@ is.na(v1)
 #what is not NA?
 !is.na(v1)
 
-
+#you can also save an answer as an object
 e <- d < 2
 e
 
@@ -99,8 +98,11 @@ e
 #false b/c e is false
 
 (d<4)&(d==3)
+a
 (a>=2)&(a==2)
+#true in some cases, not in others
 
+#you can pull out just the observations that meet your condition
 a[a > 1]
 a[a < 2]
 
@@ -111,8 +113,8 @@ BOD
 
 BOD$Time[BOD$demand > 13]
 
-
 g<- c(12,13,14)
+#add any() to see if "any" of your observations meet the condition
 any(g>16)
 any(g==13)
 which (g==13)

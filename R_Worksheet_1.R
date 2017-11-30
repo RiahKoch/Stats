@@ -16,12 +16,11 @@ b>5
 ?rep
 #2a
 C <- c(2,6,10,14,18)
-rep(C, each=3)
+rep(C, each=3) #repeach each 3 times
 #2b
-rep(C, time=4)
+rep(C, time=4) #repeat C 4 times
 #2c
-rep(C, each=3, length=17)
-
+rep(C, each=3, length=17) #keep going until you reach a length of 17
 
 #3a
 X <- sum(rep(C, each=3))
@@ -30,6 +29,7 @@ Y <- sum(rep(C, time=4))
 Y
 Z <- sum(rep(C, each=3, length=17))
 Z
+
 #3b
 sqrt(X)
 sqrt(Y)
@@ -46,5 +46,5 @@ vectorY[50:60]
 percentages <-c(72,81,52,63)
 names(percentages) <-c("County A", "County B", "County C", "County D")
 barplot(percentages)
-mean(percentages)
-sd(percentages)
+abline(h=mean(percentages),col='red')
+abline(h=c(mean(percentages)-sd(percentages),(mean(percentages)+sd(percentages))),col='blue')
